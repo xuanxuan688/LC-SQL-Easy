@@ -69,3 +69,17 @@ We return only product 1 as it is the product that was only sold in the spring o
 
 
 ---answer
+--MSSQL
+--first one totally by myself!!!
+
+/* Write your T-SQL query statement below */
+SELECT p.product_id, p.product_name
+FROM product p
+JOIN sales s
+    ON p.product_id=s.product_id
+WHERE s.sale_date BETWEEN '2019-01-01' AND '2019-03-31'
+EXCEPT (select p.product_id, p.product_name
+        FROM product p
+        JOIN sales s
+            ON p.product_id=s.product_id
+        WHERE s.sale_date BETWEEN '2019-04-01' AND '2019-12-31');
