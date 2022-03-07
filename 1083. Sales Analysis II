@@ -64,3 +64,19 @@ Explanation: The buyer with id 1 bought an S8 but did not buy an iPhone. The buy
 
 
 --answer
+---MySQL
+select s.buyer_id
+from Product p
+inner join Sales s
+    on p.product_id=s.product_id
+group by s.buyer_id
+having sum(p.product_name='S8')>0 
+    AND sum(p.product_name='iPhone')=0;
+    
+--MSSQL
+select distinct s.buyer_id
+from Sales s
+join product p
+    on s.product_id=p.product_id 
+where p.product_name='S8' EXCEPT      ---select S8, except iphone
+(select buyer_id from sales s join product p on s.product_id=p.product_id where p.product_name='iPhone');
