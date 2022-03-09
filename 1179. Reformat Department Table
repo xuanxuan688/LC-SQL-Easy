@@ -50,7 +50,7 @@ Note that the result table has 13 columns (1 for the department id + 12 for the 
 --- answer
 --mssql
 SELECT id, 
-    SUM(CASE WHEN month='Jan' THEN revenue ELSE NULL END) as 'Jan_Revenue',
+    SUM(CASE WHEN month='Jan' THEN revenue ELSE NULL END) as 'Jan_Revenue',                -----需要列出很多row，用case when then else end
     SUM(CASE WHEN month='Feb' THEN revenue ELSE NULL END) as 'Feb_Revenue',
     SUM(CASE WHEN month='Mar' THEN revenue ELSE NULL END) as 'Mar_Revenue',
     SUM(CASE WHEN month='Apr' THEN revenue ELSE NULL END) as 'Apr_Revenue',
