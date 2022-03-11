@@ -83,7 +83,7 @@ JOIN TVProgram t
     ON c.content_id=t.content_id
 WHERE c.kids_content = 'Y' 
     AND c.content_type='Movies'
-    AND YEAR(t.program_date)='2020'
+    AND YEAR(t.program_date)='2020'        --- DATE functions
     AND MONTH(t.program_date)='06';
 
 
