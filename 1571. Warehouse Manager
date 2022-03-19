@@ -90,7 +90,7 @@ LEFT JOIN Products p
     
 --2
 SELECT w.name as warehouse_name,
-    SUM(w.units*p.width*p.length*p.height) AS volume
+    SUM(w.units*p.width*p.length*p.height) AS volume    -- remember to use SUM() when need total
 FROM Warehouse w
 JOIN Products p
     ON w.product_id=p.product_id
