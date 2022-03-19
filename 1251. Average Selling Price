@@ -76,6 +76,24 @@ JOIN UnitsSold u
 WHERE u.purchase_date between p.start_date and p.end_date
 GROUP BY p.product_id;
 
+---cte
+with cte as 
+(SELECT
+    u.product_id,
+    sum(p.price*u.units)/sum(u.units) as price  -- remember to sum
+FROM Prices p
+    JOIN UnitsSold u
+ON p.product_id=u.product_id
+WHERE u.purchase_date<=p.end_date and u.purchase_date>=p.start_date
+GROUP BY u.product_id)
+
+select product_id, 
+    ROUND(price, 2) as average_price
+FROM cte
+
+-- avg(price) group by product_id. round 2
+
+
 ---mssql
 select p.product_id,
 round(cast(sum(u.units*p.price) as float)/sum(u.units),2) as average_price from Prices p join UnitsSold u on
