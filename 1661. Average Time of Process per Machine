@@ -75,3 +75,5 @@ SELECT
     ROUND((SUM(CASE WHEN activity_type='end' THEN timestamp END)-SUM(CASE WHEN activity_type='start' THEN timestamp END))/count(distinct process_id), 3) as processing_time
 FROM Activity
 GROUP BY machine_id;
+
+--count(distinct process_id)= total number of process
