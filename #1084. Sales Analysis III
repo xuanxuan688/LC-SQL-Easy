@@ -80,3 +80,5 @@ WHERE product_id IN (
     FROM Sales
     GROUP BY product_id  --group sale_date by same product_id
     HAVING MIN(sale_date)>='2019-01-01' AND MAX(sale_date)<='2019-03-31');  --find the product_id within date range
+
+如果用between不能exclude在别的季度卖过。 用MIN,MAX就不会。
