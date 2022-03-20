@@ -66,6 +66,17 @@ Explanation: Both sellers with id 1 and 3 sold products with the most total pric
 
 
 
+
+# Write your MySQL query statement below
+
+SELECT seller_id
+FROM
+(SELECT seller_id,
+    rank() OVER (order by sum(price) desc) rnk
+FROM sales
+GROUP BY seller_id) a
+WHERE a.rnk='1'
+
 ---mssql
 /* Write your T-SQL query statement below */
 SELECT TOP 1 with ties seller_id
