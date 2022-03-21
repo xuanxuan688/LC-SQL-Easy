@@ -59,6 +59,8 @@ Explanation: Note that we only care about report reasons with non-zero number of
 # Write your MySQL query statement below
 
 
+-- Qs: We only want action = report?
+
 SELECT
     extra as report_reason, 
     count(distinct post_id) as report_count
