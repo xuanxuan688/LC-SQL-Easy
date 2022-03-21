@@ -80,7 +80,7 @@ The npv values of all other queries can be found in the NPV table.
 # Write your MySQL query statement below
 
 SELECT q.id, q.year, ifnull(n.npv, 0) as npv
-FROM queries q     -- only keep npv that has query
+FROM queries q     -- keep all queries even if it does not have npv
 LEFT JOIN NPV n
     ON q.year=n.year
     AND q.id=n.id 
