@@ -84,9 +84,9 @@ SELECT p.product_name, SUM(o.unit) as unit
 FROM Products p
 JOIN Orders o
     ON p.product_id=o.product_id
-WHERE LEFT(o.order_date, 7)='2020-02'
+WHERE LEFT(o.order_date, 7)='2020-02'       -- 提取指定日期
 GROUP BY p.product_name
-HAVING SUM(o.unit)>=100
+HAVING SUM(o.unit)>=100    -- 筛选大于100的
 
 
 -- name, unit>=100, order_date='2020-02'
