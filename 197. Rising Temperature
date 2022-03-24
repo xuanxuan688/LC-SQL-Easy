@@ -51,4 +51,14 @@ JOIN Weather b
     ON DATEDIFF(a.recordDate,b.recorddate)=1   -- a-b=1
 AND a.temperature>b.temperature
 
--- id, temperature
+
+
+# Write your MySQL query statement below
+
+select w1.id
+from Weather w1, Weather w2
+where datediff(w1.recordDate,w2.recordDate)=1
+and w1.temperature>w2.temperature;
+
+-- date(str) cannot use +1/-1, use datediff() to calculate
+-- eg. DATEDIFF("2017-02-28", "2017-03-01") = -1
