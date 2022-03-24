@@ -46,6 +46,24 @@ Product 0 is available in all three stores with prices 95, 100, and 105 respecti
 Product 1 is available in store1 with price 70 and store3 with price 80. The product is not available in store2.
 
 
+-- rearrange question: 
+-- 1. CASE WHEN 
+-- 2. 分类讨论+UNION
+
+# Write your MySQL query statement below
+
+select * from
+(select product_id, 'store1' as store, store1 as price from products
+UNION
+select product_id, 'store2' as store, store2 as price from products
+UNION
+select product_id, 'store3' as store, store3 as price from products) t
+where t.price is not null
+
+
+
+
+
 
 --from one table create different rows: union
 # Write your MySQL query statement below
