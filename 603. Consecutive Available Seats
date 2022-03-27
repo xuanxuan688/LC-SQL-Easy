@@ -50,3 +50,6 @@ JOIN cinema b
 ON ABS(a.seat_id-b.seat_id)=1            ---用abs表示连续的两个数。3个呢？ABS(a-b)=2
 WHERE a.free='1' and b.free='1'
 ORDER BY a.seat_id ASC;
+
+or:
+-- select .. from c1, c2 where abs() and ... and
