@@ -76,3 +76,5 @@ FROM
 from MyNumbers
 group by num
 having count(num)=1) t      ---remember every table should have a name! even if a subquery
+
+-- max() will auto return null
