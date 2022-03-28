@@ -69,8 +69,21 @@ There are 4 unique accepted requests, and there are 5 requests in total. So the 
 
 
 
+-- cross join
+-- , in from means cross join
+
+# Write your MySQL query statement below
+
+select 
+ifnull(round(count(distinct b.requester_id, b.accepter_id)/count(distinct a.sender_id, a.send_to_id),2), 0.00) as accept_rate
+from friendrequest a, requestaccepted b
+
+
+
 # Write your MySQL query statement below
 SELECT ROUND(IFNULL((
     SELECT COUNT(DISTINCT requester_id, accepter_id) FROM requestaccepted)/
             (SELECT COUNT(DISTINCT sender_id, send_to_id) FROM friendrequest), 0)
                 , 2) AS accept_rate
+
+
