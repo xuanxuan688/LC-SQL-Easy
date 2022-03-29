@@ -63,4 +63,4 @@ SELECT employee_id FROM employees where manager_id in
     (SELECT employee_id FROM employees where manager_id in   -- loop1
         (SELECT employee_id FROM employees where manager_id in   -- loop2
             (SELECT employee_id FROM Employees WHERE manager_id=1)))   -- loop3 and boss
-    and employee_id != 1;
+    and employee_id != 1;      -- or <>1 (not equal to)
