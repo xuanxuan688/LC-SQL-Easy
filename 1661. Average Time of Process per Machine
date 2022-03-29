@@ -77,3 +77,14 @@ FROM Activity
 GROUP BY machine_id;
 
 --count(distinct process_id)= total number of process
+
+
+
+# Write your MySQL query statement below
+select machine_id, round(avg(time), 3) as processing_time
+from (
+select machine_id, 
+    sum(if(activity_type='end', timestamp, 0))-sum(if(activity_type='start', timestamp, 0)) as time
+from Activity
+group by machine_id, process_id) t
+group by machine_id
