@@ -107,11 +107,11 @@ John attended the Math exam 1 time, the Physics exam 1 time, and the Programming
 
 # Write your MySQL query statement below
 
-select s.student_id, s.student_name, sub.subject_name, 
+select s.student_id, s.student_name, sub.subject_name,  -- use sub can count 0 into the result
     count(e.subject_name) as attended_exams   -- #attend by student_id
 from students s
 join subjects sub    -- join要在前，不然有null没法join subjects
-left join examinations e  -- 保留没参加考试的student
+left join examinations e  -- per student_id, per subject_name, list exams
     on s.student_id=e.student_id 
     and sub.subject_name=e.subject_name    
 group by s.student_id, sub.subject_name     -- 用sub的才不会显示null
