@@ -62,3 +62,14 @@ FROM Employees a, Employees b
 WHERE a.employee_id = b.reports_to
 GROUP BY 1
 ORDER BY 1;
+
+
+
+# Write your MySQL query statement below
+select
+b.employee_id, b.name, sum(case when a.reports_to is not null then 1 else 0 end) as reports_count, round(avg(a.age),0) as average_age
+from employees a
+join employees b
+    on a.reports_to=b.employee_id
+group by a.reports_to
+order by employee_id
