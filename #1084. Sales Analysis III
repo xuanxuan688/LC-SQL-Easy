@@ -68,17 +68,14 @@ We return only product 1 as it is the product that was only sold in the spring o
 
 
 
----answer
---MSSQL
---great answer
+# Write your MySQL query statement below
 
-/* Write your T-SQL query statement below */
-SELECT product_id, product_name
-FROM product
-WHERE product_id IN (
-    SELECT product_id
-    FROM Sales
-    GROUP BY product_id  --group sale_date by same product_id
-    HAVING MIN(sale_date)>='2019-01-01' AND MAX(sale_date)<='2019-03-31');  --find the product_id within date range
+SELECT p.product_id, p.product_name
+FROM product p
+JOIN sales s
+    ON p.product_id=s.product_id
+group by p.product_id
+having min(s.sale_date)>='2019-01-01' 
+and max(s.sale_date)<='2019-03-31'
 
 如果用between不能exclude在别的季度卖过。 用MIN,MAX就不会。
