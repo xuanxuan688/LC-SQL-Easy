@@ -73,6 +73,20 @@ ORDER BY ctr DESC, ad_id ASC
 
 
 
+
+# Write your MySQL query statement below
+
+select 
+    ad_id,
+    round(ifnull(sum(case when action='Clicked' then 1 else 0 end)*100/(sum(case when action='Clicked' then 1 else 0 end)+sum(case when action='Viewed' then 1 else 0 end)),0), 2) as ctr
+from Ads
+group by ad_id
+order by ctr desc, ad_id asc
+
+
+
+
+
 -- ctr=case ... when
 -- ROUND( , 2)
 -- order by ctr desc, ad_id asc
