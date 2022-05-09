@@ -59,17 +59,12 @@ Explanation: Note that we only care about report reasons with non-zero number of
 # Write your MySQL query statement below
 
 
--- Qs: We only want action = report?
+# Write your MySQL query statement below
 
-SELECT
-    extra as report_reason, 
-    count(distinct post_id) as report_count
-FROM actions
-WHERE action_date='2019-07-04'
-AND action='report'
-group by extra
-
--- Do not 画蛇添足:
-
--- No need to filter extra is not null. When action = 'report', extra is guaranteed not null.
--- No need to filter count > 0. If a group exists, it must have at least one row.
+select extra as report_reason,
+    count(distinct post_id) as report_count  -- distinct to avoid duplicate
+from Actions
+where action='report'  -- only reported posts
+and action_date=date_sub('2019-07-05', interval 1 day)  -- yesterday, or date_add(, inverval -1 day)
+group by 1
+having extra!='null' -- only non-zero report
