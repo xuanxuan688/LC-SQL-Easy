@@ -72,6 +72,8 @@ inner join Sales s
 group by s.buyer_id
 having sum(p.product_name='S8')>0 
     AND sum(p.product_name='iPhone')=0;
+        
+  
     
 --MSSQL
 select distinct s.buyer_id
