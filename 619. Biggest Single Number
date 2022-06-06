@@ -78,3 +78,12 @@ group by num
 having count(num)=1) t      ---remember every table should have a name! even if a subquery
 
 -- max() will auto return null
+
+
+
+
+select max(num) as num from (
+select num, count(num) as ct
+from mynumbers
+group by num) t
+where ct=1
