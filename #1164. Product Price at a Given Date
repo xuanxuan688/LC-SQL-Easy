@@ -46,15 +46,15 @@ Output:
 
 
 # Write your MySQL query statement below
-WITH cte as (
-    SELECT product_id, 
-    new_price as price,
-    DENSE_RANK() OVER (partition by product_id order by change_date DESC) as rnk
-    FROM Products
-    WHERE change_date <= '2019-08-16'
+with base_table as (
+    select *, rank() over(partition by product_id order by change_date desc) as ranking
+    from products
+    where change_date <= '2019-08-16'
     )
-SELECT distinct product_id, price
-FROM cte
+
+select A.product_id, isnull(new_price, 10) as price
+from (select distinct product_id from products) A 
+left join (select * from base_table where ranking = 1) B on A.product_id = B.product_id
 
 
 
